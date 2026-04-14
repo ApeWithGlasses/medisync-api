@@ -13,4 +13,5 @@ public interface AppointmentRepository {
     List<Appointment> findByDoctorIdAndDateTimeBetween(Long doctorId, LocalDateTime start, LocalDateTime end);
     List<Appointment> findByPatientId(Long patientId);
     List<Appointment> findByDoctorId(Long doctorId);
+    List<Appointment> findAll();
 }

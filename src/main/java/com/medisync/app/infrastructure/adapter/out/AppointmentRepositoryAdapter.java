@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,5 +44,10 @@ public class AppointmentRepositoryAdapter implements AppointmentRepository {
     @Override
     public List<Appointment> findByDoctorId(Long doctorId) {
         return appointmentDataRepository.findByDoctorId(doctorId);
+    }
+
+    @Override
+    public List<Appointment> findAll() {
+        return StreamSupport.stream(appointmentDataRepository.findAll().spliterator(), false).toList();
     }
 }

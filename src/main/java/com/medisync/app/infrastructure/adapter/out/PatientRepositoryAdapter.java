@@ -5,7 +5,9 @@ import com.medisync.app.domain.model.Patient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,5 +28,10 @@ public class PatientRepositoryAdapter implements PatientRepository {
     @Override
     public void deleteById(Long id) {
         patientDataRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Patient> findAll() {
+        return StreamSupport.stream(patientDataRepository.findAll().spliterator(), false).toList();
     }
 }
